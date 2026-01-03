@@ -1,0 +1,48 @@
+{{!< default}}
+
+<main class="site-main gh-canvas">
+    {{#if posts}}
+        {{#foreach posts}}
+            {{#if @first}}
+                {{! --- Vollständiger Artikel --- }}
+                <article class="gh-article-full">
+                    <header class="gh-article-header">
+                        <h5 class="gh-article-title">{{title}}</h5>
+                        {{#if custom_excerpt}}<p class="gh-article-excerpt">{{custom_excerpt}}</p>{{/if}}
+                        <div class="gh-article-meta">
+                            Von {{primary_author.name}} · <time datetime="{{date format="YYYY-MM-DD"}}">{{date}}</time>
+                        </div>
+                    </header>
+                    
+                    {{#if feature_image}}
+                    <figure class="gh-article-image">
+                        <!-- <img src="{{feature_image}}" alt="{{title}}" />-->
+                    </figure>
+                    {{/if}}
+                    
+                    <div class="gh-content gh-canvas">
+                        {{content}} {{! WICHTIG: Dies rendert den kompletten Artikelinhalt }}
+                    </div>
+                </article>
+
+                {{#has next}}
+                    <hr>
+                    <h2 class="gh-list-heading">Weitere Artikel</h2>
+                {{/has}}
+            {{/if}}
+        {{/foreach}}
+
+        {{! --- Artikel-Liste --- }}
+        <div class="post-feed gh-feed">
+            {{#foreach posts}}
+                {{#unless @first}}
+                    {{> "loop"}}
+                {{/unless}}
+            {{/foreach}}
+        </div>
+
+        {{pagination}}
+    {{else}}
+        <p>Es wurden noch keine Artikel veröffentlicht.</p>
+    {{/if}}
+</main>
