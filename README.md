@@ -18,4 +18,4 @@ Hope you enjoy.
 | `assets/css/screen.css` | Neue Klassen hinzugefügt | Styling für Startseiten-Layout | `.gh-article-full { margin-bottom: 4rem; }` |
 | `templates/index.hbs` | Template komplett ersetzt | Zeigt neuesten Artikel vollständig, dann Liste | [Siehe separate Datei] |
 
-This Theme is based on the Dawn Ghost CMS Theme.
+This Theme is based on the [Dawn Ghost](https://ghost.org/themes/dawn/) Theme.
