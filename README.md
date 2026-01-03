@@ -1,6 +1,10 @@
 # Ghost Theme JM Ghost
 
-First push 03.01.2026
+(First push 03.01.2026)
+
+Welcome to my Ghost CMS Theme **JM Ghost**. It is a very minimalistic Theme for short notes. I reduced all the capacity of Ghost CMS to look as clean and minimal at it is possible.
+
+Hope you enjoy.
 
 ![](screenshot.png)
 
