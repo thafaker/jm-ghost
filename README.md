@@ -2,9 +2,9 @@
 
 (First push 03.01.2026)
 
-Welcome to my Ghost CMS Theme **JM Ghost**. It is a very minimalistic Theme for short notes. I reduced all the capacity of Ghost CMS to look as clean and minimal at it is possible.
+Welcome to my Ghost CMS Theme **JM Ghost**. It is a very minimalistic Theme for short notes. I reduced all the capacity of Ghost CMS to look as clean and minimal at it is possible. The newest post is alway shown in top, prominent at the start page. There is no navigation bar or something like that. Be as minimalistic as possible!
 
-Hope you enjoy.
+*Hope you enjoy*.
 
 ![](screenshot.png)
 
