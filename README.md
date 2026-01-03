@@ -1,4 +1,10 @@
-# Anpassungen am Dawn-Theme
+# Ghost Theme JM Ghost
+
+First push 03.01.2026
+
+![](screenshot.png)
+
+### Anpassungen am Dawn-Theme
 
 ## CSS-Modifikationen
 
