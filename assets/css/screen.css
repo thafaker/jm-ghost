@@ -21,22 +21,3 @@
 @import "misc/utils.css";
 @import "misc/animations.css";
 @import "misc/dark.css";
-
-/* Text-Breite bestimmten */
-:root { --content-width: 460px; } 
-
-/* Header-Breite auf den Inhaltsbereich abstimmen */
-.gh-head-inner {
-    max-width: 800px; /* Stelle diesen Wert auf DEINE gewünschte Breite ein (z.B. 800px, 900px) */
-    margin: 0 auto; /* Zentriert den Container */
-}
-
-.gh-article-full {
-    margin-bottom: 4rem;
-}
-.gh-list-heading {
-    margin: 3rem 0 1.5rem 0;
-    text-align: center;
-    font-size: 1.8rem;
-    color: #333;
-}
