@@ -24,13 +24,24 @@
                         {{content}} {{! WICHTIG: Dies rendert den kompletten Artikelinhalt }}
                     </div>
                 </article>
-
+                {{! // --- Vollständiger Artikel --- }}
                 {{#has next}}
                     <hr>
                     <h2 class="gh-list-heading">Weitere Artikel</h2>
                 {{/has}}
             {{/if}}
         {{/foreach}}
+
+    {{! --- want more --- }}
+        <small class="gh-what-more">
+            <p><strong>What more?</strong></p>
+            <p>I also post quick notes, and you may want to follow 
+            my <a href="https://www.strava.com/athletes/24604843">training and running log</a>, or check out my photos.
+            Wanna say Hi?. Or skip to the menu!
+            </p>
+        </small>
+        <hr>
+    {{! // --- want more --- }}
 
         {{! --- Artikel-Liste --- }}
         <div class="post-feed gh-feed">
