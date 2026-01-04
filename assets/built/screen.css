@@ -33,6 +33,12 @@
     font-size: 0.75em;
 }
 
+.gh-foot {
+    display: flex !important;
+    justify-content: center !important;
+    align-items: center !important;
+}
+
 .gh-copyright {
     text-align: center !important;
 }
