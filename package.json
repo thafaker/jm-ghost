@@ -53,7 +53,7 @@
                     "Modern sans-serif",
                     "Elegant serif"
                 ],
-                "default": "Modern sans-serif"
+                "default": "Space Grotesk"
             },
             "body_font": {
                 "type": "select",
@@ -61,7 +61,7 @@
                     "Modern sans-serif",
                     "Elegant serif"
                 ],
-                "default": "Modern sans-serif"
+                "default": "Fira Mono"
             },
             "color_scheme": {
                 "type": "select",
