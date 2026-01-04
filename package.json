@@ -50,6 +50,7 @@
             "title_font": {
                 "type": "select",
                 "options": [
+                    "Space Grotesk",
                     "Modern sans-serif",
                     "Elegant serif"
                 ],
@@ -58,6 +59,7 @@
             "body_font": {
                 "type": "select",
                 "options": [
+                    "Fira Mono",
                     "Modern sans-serif",
                     "Elegant serif"
                 ],
