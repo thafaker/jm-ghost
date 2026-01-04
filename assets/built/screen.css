@@ -5,7 +5,7 @@
 /* =================================================== */
 
 :root { 
-    --content-width: 460px !important; /* Spezifität erhöhen */
+    --content-width: 500px !important; /* Spezifität erhöhen */
 }
 
 .gh-head-inner {
