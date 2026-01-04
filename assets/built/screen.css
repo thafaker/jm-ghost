@@ -33,8 +33,22 @@
     font-size: 0.75em;
 }
 
-.gh-foot {
+/* =================================================== */
+/* Footer Zentrierung */
+/* =================================================== */
+
+.gh-foot .gh-foot-inner {
     display: flex !important;
     justify-content: center !important;
     align-items: center !important;
+    text-align: center !important;
+}
+
+.gh-copyright {
+    text-align: center !important;
+    width: 100% !important;
+}
+
+.gh-copyright p {
+    margin: 0.5rem 0 0 0 !important;
 }
