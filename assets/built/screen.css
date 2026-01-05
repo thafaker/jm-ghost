@@ -52,3 +52,26 @@
 .gh-copyright p {
     margin: 0.5rem 0 0 0 !important;
 }
+
+/* =================================================== */
+/* Permalink Zentrierung */
+/* =================================================== */
+.gh-permalink-container {
+    text-align: right;
+    margin-top: 2rem;
+    margin-bottom: 1rem;
+}
+
+.gh-permalink-link {
+    display: inline-block;
+    font-size: 0.8rem;
+    color: #999;
+    text-decoration: none;
+    border-bottom: 1px dotted #999;
+    padding: 0.2rem 0.5rem;
+}
+
+.gh-permalink-link:hover {
+    color: #333;
+    border-bottom-style: solid;
+}

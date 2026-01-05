@@ -23,6 +23,15 @@
                     <div class="gh-content gh-canvas">
                         {{content}} {{! WICHTIG: Dies rendert den kompletten Artikelinhalt }}
                     </div>
+                    {{! --- Permalink hinzufügen --- }}
+                    <hr>    
+                    <p class="gh-permalink">
+                       <div class="gh-permalink-container">
+                            <a href="{{url}}" class="gh-permalink-link">Permalink zum Artikel</a>
+                       </div>
+                    </p>
+                    {{! --- // Permalink hinzufügen --- }}
+
                 </article>
                 {{! // --- Vollständiger Artikel --- }}
                 {{#has next}}
