@@ -8,6 +8,8 @@ Welcome to my Ghost CMS Theme **JM Ghost**. It is a very minimalistic Theme for 
 
 ![](screenshot.png)
 
+[Click here](https://janmontag.de) for a running copy of this theme, my private website.
+
 ### Anpassungen am Dawn-Theme
 
 ## CSS-Modifikationen
