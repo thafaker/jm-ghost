@@ -14,4 +14,147 @@
         {{> "comments"}}
     {{/post}}
 
+<!-- Webmentions Container HIER EINFÜGEN -->
+<section class="gh-content gh-canvas is-body e-content{{#if @custom.enable_drop_caps_on_posts}} drop-cap{{/if}}">	
+    <h3>Reaktionen</h3>
+    <div id="webmentions-container">
+        <p>Lade Interaktionen...</p>
+    </div>
+</section>
+
+<!-- webmention script 13.07.2025 -->
+<script>
+document.addEventListener('DOMContentLoaded', async () => {
+  const container = document.getElementById('webmentions-container');
+  if (!container) return;
+
+  const sanitizeHTML = (str) => {
+    const div = document.createElement('div');
+    div.textContent = str || '';
+    return div.innerHTML;
+  };
+
+  const secureUrl = (url) => {
+    if (!url) return 'data:image/svg+xml,%3Csvg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 48 48"%3E%3Ccircle cx="24" cy="24" r="24" fill="%23f0f0f0"/%3E%3Ctext x="24" y="32" font-size="20" text-anchor="middle"%3E👤%3C/text%3E%3C/svg%3E';
+    return url.replace(/^http:\/\//i, 'https://');
+  };
+
+  const currentUrl = encodeURIComponent(window.location.href);
+  const apiUrl = `https://webmention.io/api/mentions.json?target=${currentUrl}&per-page=100`;
+
+  try {
+    const response = await fetch(apiUrl);
+    if (!response.ok) throw new Error(`HTTP Fehler: ${response.status}`);
+    
+    const data = await response.json();
+    
+    // Debugging: Daten in Konsole ausgeben
+    console.log('Webmentions Rohdaten:', data);
+    
+    if (!data.links || data.links.length === 0) {
+      container.innerHTML = '<p>Noch keine Webmentions. Sei der Erste!</p>';
+      return;
+    }
+
+    let html = '';
+    const mentionsByType = { reply: [], mention: [], like: [], repost: [] };
+
+    // Bluesky-Typ-Mapping hinzugefügt
+    data.links.forEach(mention => {
+      let type = mention.activity?.type || 'mention';
+      const wmProperty = mention.data?.['wm-property'];
+      
+      // Bluesky-spezifische Anpassungen
+      if (type === 'favorite') type = 'like';       // Bluesky Likes
+      if (wmProperty === 'like-of') type = 'like';  // Alternative Form
+      if (wmProperty === 'repost-of') type = 'repost';
+      if (type === 'link') type = 'mention';
+      
+      if (type in mentionsByType) mentionsByType[type].push(mention);
+    });
+
+    // Verarbeitung von Antworten und Mentions (inkl. Bluesky Kommentare)
+    const replies = [...mentionsByType.reply, ...mentionsByType.mention];
+    if (replies.length > 0) {
+      html += '<div class="webmentions__section"><h4>Verlinkungen & Reaktionen</h4>';
+      replies.forEach(m => {
+        const author = m.data?.author || {
+          name: m.source ? new URL(m.source).hostname : 'Unbekannt',
+          url: m.source,
+          photo: ''
+        };
+        
+        // Bluesky-spezifische Inhaltsanpassung
+        let content = 'Beitrag verlinkt';
+        if (m.data?.content) {
+          content = sanitizeHTML(
+            m.data.content
+              .replace(/<[^>]+>/g, '')
+              .substring(0, 200) + 
+            (m.data.content.length > 200 ? '...' : '')
+          );
+        } else if (m.activity?.type === 'reply') {
+          content = 'Kommentar auf Bluesky';
+        }
+        
+        const authorPhoto = secureUrl(author.photo);
+        
+        html += `
+          <div class="webmention">
+            <a href="${author.url}" target="_blank" rel="noopener">
+              <img src="${authorPhoto}" 
+                   alt="${sanitizeHTML(author.name)}" 
+                   class="webmention__author"
+                   onerror="this.onerror=null;this.src='https://thahipster.de/assets/person.svg'">
+            </a>
+            <div class="webmention__content">
+              <strong>${sanitizeHTML(author.name)}</strong>
+              <p>${content}</p>
+              <small><a href="${m.source}" target="_blank" rel="noopener">Quelle</a></small>
+            </div>
+          </div>
+        `;
+      });
+      html += '</div>';
+    }
+
+    // Verarbeitung von Likes und Reposts (inkl. Bluesky)
+    ['like', 'repost'].forEach(type => {
+      if (mentionsByType[type].length > 0) {
+        const title = type === 'like' ? 'Likes' : 'Shares';
+        html += `<div class="webmentions__section"><h4>${title}</h4><div class="webmentions__grid">`;
+        
+        mentionsByType[type].forEach(m => {
+          const author = m.data?.author || {
+            name: m.source ? new URL(m.source).hostname : 'Unbekannt',
+            url: m.source,
+            photo: ''
+          };
+          
+          const authorPhoto = secureUrl(author.photo);
+          
+          html += `
+            <a href="${author.url}" title="${sanitizeHTML(author.name)}" 
+               target="_blank" rel="noopener">
+              <img src="${authorPhoto}" 
+                   alt="${sanitizeHTML(author.name)}" 
+                   class="webmention__author"
+                   onerror="this.onerror=null;this.src='data:image/svg+xml,%3Csvg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 48 48\"%3E%3Ccircle cx=\"24\" cy=\"24\" r=\"24\" fill=\"%23f0f0f0\"/%3E%3Ctext x=\"24\" y=\"32\" font-size=\"20\" text-anchor=\"middle\"%3E👤%3C/text%3E%3C/svg%3E'">
+            </a>
+          `;
+        });
+        
+        html += '</div></div>';
+      }
+    });
+
+    container.innerHTML = html || '<p>Keine anzeigbaren Webmentions gefunden</p>';
+  } catch (error) {
+    console.error('Webmention Fehler:', error);
+    container.innerHTML = `<p>Fehler beim Laden: ${error.message}</p>`;
+  }
+});
+</script>
+<!-- /webmention script END -->
+
 </main>
